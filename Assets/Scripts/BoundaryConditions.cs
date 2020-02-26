@@ -34,7 +34,6 @@ public class BoundaryConditions : MonoBehaviour
     // }
     void OnTriggerExit(Collider other)
     {
-        print(other.gameObject);
         Destroy(other.gameObject); //Destroys the other object
     }
 }

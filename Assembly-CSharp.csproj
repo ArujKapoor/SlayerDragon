@@ -57,7 +57,6 @@
      <Compile Include="Assets\Scripts\DamageHandler.cs" />
      <Compile Include="Assets\Scripts\DragonController.cs" />
      <Compile Include="Assets\Scripts\MoveForward.cs" />
-     <Compile Include="Assets\Scripts\PlayerShooting.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/Users/arujkapoor/Desktop/Games/Slayer Dragon/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

@@ -36,7 +36,7 @@ public class DragonController : MonoBehaviour
 				// SHOOT!
 				cooldownTimer = fireDelay;
 
-				GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, transform.position, Quaternion.identity);
+				GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, transform.parent.position, Quaternion.identity);
 				fireBall.layer = fireBallLayer;
 			}
 		}
