@@ -225,8 +225,12 @@ namespace Pathfinding {
 
 			// Clamping will be done elsewhere as well
 			// but this prevents negative widths from being converted to positive ones (since an absolute value will be taken)
-			newWidth = Mathf.Max(newWidth, 1);
-			newDepth = Mathf.Max(newDepth, 1);
+
+    		float screenRatio = (float)Screen.width / (float)Screen.height;
+        	float height = Camera.main.orthographicSize;
+			float width = Camera.main.orthographicSize * screenRatio;
+			newWidth = Mathf.CeilToInt(height)*2;
+			newDepth = Mathf.CeilToInt(width)*2;
 
 			GUILayout.EndVertical();
 

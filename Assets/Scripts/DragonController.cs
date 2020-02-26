@@ -38,6 +38,7 @@ public class DragonController : MonoBehaviour
 
 				GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, transform.parent.position, Quaternion.identity);
 				fireBall.layer = fireBallLayer;
+				fireBall.GetComponent<BulletHandler>().collisionDamge = gameObject.GetComponent<PlayerStats>().bulletDamage;
 			}
 		}
 	}
