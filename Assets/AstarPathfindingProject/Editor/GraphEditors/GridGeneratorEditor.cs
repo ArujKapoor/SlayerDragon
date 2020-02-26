@@ -225,12 +225,12 @@ namespace Pathfinding {
 
 			// Clamping will be done elsewhere as well
 			// but this prevents negative widths from being converted to positive ones (since an absolute value will be taken)
-
-    		float screenRatio = (float)Screen.width / (float)Screen.height;
+			string[] res = UnityStats.screenRes.Split('x');
+			float screenRatio = (float)int.Parse(res[0]) / (float)int.Parse(res[1]);
         	float height = Camera.main.orthographicSize;
 			float width = Camera.main.orthographicSize * screenRatio;
-			newWidth = Mathf.CeilToInt(height)*2;
-			newDepth = Mathf.CeilToInt(width)*2;
+			newWidth = Mathf.CeilToInt(width*2);
+			newDepth = Mathf.CeilToInt(height*2);
 
 			GUILayout.EndVertical();
 
