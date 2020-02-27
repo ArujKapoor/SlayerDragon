@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {   public int health = 100;
-    public int bulletDamage = 20;
-    public int collisionDamage = 30;
+    public int bulletDamage = 2;
+    public int collisionDamage = 3;
 
     // Start is called before the first frame update
     void Start()

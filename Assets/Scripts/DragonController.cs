@@ -9,6 +9,7 @@ public class DragonController : MonoBehaviour
 	private bool isShooting;
 	private Vector3 offset;
     private Vector3 screenPoint;
+	private Transform shootEnemy;
 	public int fireBallLayer;
 	public GameObject fireBallPrefab;
     public float dragonHeight;
@@ -19,27 +20,35 @@ public class DragonController : MonoBehaviour
 	
 	void Start()
 	{
+		FindClosestEnemy();
 		isShooting = true;
 	}
 	void Update()
 	{
-		Shoot();
+		if(shootEnemy)
+		{
+			if(isShooting)
+			{
+				Shoot();
+			}
+		}
+		else
+		{
+			FindClosestEnemy();
+		}
+		
 	}
 	void Shoot()
-	{
-		if(isShooting)
+	{	
+		cooldownTimer -= Time.deltaTime;
+
+		if(cooldownTimer <= 0) 
 		{
-			cooldownTimer -= Time.deltaTime;
+			cooldownTimer = fireDelay;
 
-			if(cooldownTimer <= 0) 
-			{
-				// SHOOT!
-				cooldownTimer = fireDelay;
-
-				GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, transform.parent.position, Quaternion.identity);
-				fireBall.layer = fireBallLayer;
-				fireBall.GetComponent<BulletHandler>().collisionDamge = gameObject.GetComponent<PlayerStats>().bulletDamage;
-			}
+			GameObject fireBall = (GameObject)Instantiate(fireBallPrefab, transform.parent.position, transform.parent.rotation);
+			fireBall.layer = fireBallLayer;
+			fireBall.GetComponent<BulletHandler>().collisionDamge = gameObject.GetComponent<PlayerStats>().bulletDamage;
 		}
 	}
 	void OnMouseDown()
@@ -50,6 +59,7 @@ public class DragonController : MonoBehaviour
 
 	void OnMouseUp()
 	{
+		FindClosestEnemy();
 		isShooting = true;
 	}
 
@@ -78,4 +88,31 @@ public class DragonController : MonoBehaviour
         transform.parent.position = curPosition;
     }
 
+	void FindClosestEnemy()
+	{
+		float distanceToClosestEnemy = Mathf.Infinity;
+		EnemyStats closestEnemy = null;
+		EnemyStats[] allEnemies = GameObject.FindObjectsOfType<EnemyStats>();
+
+		foreach (EnemyStats currentEnemy in allEnemies) {
+			float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+			if (distanceToEnemy < distanceToClosestEnemy) {
+				distanceToClosestEnemy = distanceToEnemy;
+				closestEnemy = currentEnemy;
+			}
+		}
+		if(closestEnemy)
+		{
+			shootEnemy = closestEnemy.transform;
+			RotateToEnemy();
+		}
+		
+	}
+
+	void RotateToEnemy()
+	{
+		Vector3 direction = (shootEnemy.position - transform.parent.position).normalized;
+		float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.parent.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+	}
 }
