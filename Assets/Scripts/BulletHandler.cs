@@ -9,6 +9,7 @@ public class BulletHandler : MonoBehaviour {
 
 	// Update is called once per frame
 	void Start () {
+		Debug.LogError("Shuriken Instantiated");
 		GetComponent<Rigidbody>().velocity = transform.up * speed;
 	}
 	void OnTriggerEnter(Collider other) {

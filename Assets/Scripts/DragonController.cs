@@ -39,7 +39,7 @@ public class DragonController : MonoBehaviour
 		
 	}
 	void Shoot()
-	{	
+	{
 		cooldownTimer -= Time.deltaTime;
 
 		if(cooldownTimer <= 0) 
