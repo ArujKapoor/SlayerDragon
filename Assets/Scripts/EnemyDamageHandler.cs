@@ -28,7 +28,7 @@ public class EnemyDamageHandler : MonoBehaviour {
 	}
 
 	void Die() {
-		Destroy(gameObject);
+		Destroy(transform.parent.gameObject);
 	}
 
 }
