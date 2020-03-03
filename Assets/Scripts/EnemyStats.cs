@@ -8,6 +8,7 @@ public class EnemyStats : MonoBehaviour
     public int collisionDamage;
     public float rateofFire;
     public int bulletDamage = 0;
+    public int score = 0;
     private string enemyTag;
     // Start is called before the first frame update
     void Start()
@@ -21,24 +22,28 @@ public class EnemyStats : MonoBehaviour
                 collisionDamage = 50;
                 rateofFire = 1f;
                 bulletDamage = 50;
+                score = 10;
                 break;
 
             case "Ghost1":
                 health = 50;
                 collisionDamage = 100;
                 rateofFire = 1f;
+                score = 30;
                 break;
 
             case "Eagle":
                 health = 30;
                 collisionDamage = 50;
                 rateofFire = 0f;
+                score = 20;
                 break;
 
             case "Snake":
                 health = 40;
                 collisionDamage = 50;
                 rateofFire = 0f;
+                score = 20;
                 break;
         }
     }
