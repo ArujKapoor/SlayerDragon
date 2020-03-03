@@ -25,16 +25,13 @@ public class DragonController : MonoBehaviour
 	}
 	void Update()
 	{
-		if(shootEnemy)
+		FindClosestEnemy();
+		if (shootEnemy)
 		{
 			if(isShooting)
 			{
 				Shoot();
 			}
-		}
-		else
-		{
-			FindClosestEnemy();
 		}
 		
 	}
